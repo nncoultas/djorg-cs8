@@ -145,4 +145,5 @@ REST_FRAMEWORK = {
 CORS_ORIGIN_WHITELIST = (
     'localhost:3000',
     'localhost:8000',
+    'https://djorg-react-front-end.herokuapp.com',
 )
