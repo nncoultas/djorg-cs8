@@ -28,7 +28,7 @@ SECRET_KEY = config("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = [config('ALLOWED_HOSTS')]
+ALLOWED_HOSTS = config("ALLOWED_HOSTS")
 
 # Application definition
 
@@ -59,7 +59,7 @@ MIDDLEWARE = [
 
 CORS_ALLOW_CREDENTIALS = True
 
-CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_ALLOW_ALL = False
 
 ROOT_URLCONF = 'djorg.urls'
 
