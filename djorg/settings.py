@@ -30,11 +30,14 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
+LOGIN_REDIRECT_URL = '/api'
+
 # Application definition
 
 INSTALLED_APPS = [
     'corsheaders',
     'notes',
+    'graphene_django',
     'rest_framework',
     'rest_framework.authtoken',
     'django.contrib.admin',
@@ -51,7 +54,7 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    # 'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -66,7 +69,7 @@ ROOT_URLCONF = 'djorg.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -142,8 +145,14 @@ REST_FRAMEWORK = {
     ),
 }
 
+GRAPHENE = {
+    'SCHEMA': 'notes.schema.schema' #format dir.file.varname
+}
+
 CORS_ORIGIN_WHITELIST = (
     'localhost:3000',
     'localhost:8000',
     'djorg-react-front-end.herokuapp.com',
 )
+
+CSRF_COOKIE_NAME = "csrftoken"
